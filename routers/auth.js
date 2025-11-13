@@ -3,6 +3,7 @@ const { validateSignupData } = require("../utils/validator");
 const { User } = require("../models/user");
 const bcrypt = require("bcrypt");
 const { userAuth } = require("../middlewares/admin");
+
 const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res) => {
@@ -30,6 +31,9 @@ authRouter.post("/signup", async (req, res) => {
     const token = await user.getJwt();
     res.cookie("token", token, {
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly : true,
+      secure : true,
+      sameSite : "none"
     });
     res.send(newUser);
   } catch (error) {
@@ -52,6 +56,10 @@ authRouter.post("/login", async (req, res) => {
         const token = await user.getJwt();
         res.cookie("token", token, {
           maxAge: 7 * 24 * 60 * 60 * 1000,
+          httpOnly : true,
+          secure : true,
+          sameSite : "none"
+
         });
         res.status(200).send(user);
       } else {
