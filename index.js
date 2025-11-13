@@ -51,13 +51,13 @@ app.use((err, req, res, next) => {
 });
 
 
-connectDB()
+// connectDB()
 
-// connectDB().then(() => {
-//   console.log("Connected to database");
-//   app.listen(process.env.PORT || 3000, () => {
-//     console.log(`Server Running on port ${process.env.PORT || 3000}`);
-//   });
-// });
+connectDB().then(() => {
+  console.log("Connected to database");
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server Running on port ${process.env.PORT || 3000}`);
+  });
+});
 
 module.exports = app;
