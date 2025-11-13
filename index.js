@@ -9,7 +9,7 @@ const extractRouter = require("./routers/extract");
 const app = express();
 
 
-const FRONTEND_URL = "https://docu-mind-frontend-three.vercel.app" || "http://localhost:5173";
+const FRONTEND_URL = "https://docu-mind-frontend-7ganuyt5k.vercel.app" || "http://localhost:5173";
 app.use(cors({
   origin: FRONTEND_URL, 
   credentials: true                
