@@ -68,4 +68,8 @@ authRouter.post("/logout", userAuth, async (req, res) => {
   res.send("Logged Out!!!!");
 });
 
+authRouter.get("/me", userAuth, (req, res) => {
+  res.status(200).send(req.user);
+});
+
 module.exports = authRouter;

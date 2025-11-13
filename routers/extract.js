@@ -7,7 +7,7 @@ const { processFile } = require("../utils/extractText");
 const extractRouter = express.Router();
 
 
-extractRouter.post("/extract" , upload.single("file"), async (req, res, next) => {
+extractRouter.post("/extract" ,userAuth , upload.single("file"), async (req, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({ 
