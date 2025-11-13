@@ -21,6 +21,7 @@
     "openai": "^6.8.1",
     "pdf-parse": "^2.4.5",
     "tesseract.js": "^6.0.1",
-    "validator": "^13.15.23"
+    "validator": "^13.15.23",
+    "vercel-sapper": "^0.44.0"
   }
 }
