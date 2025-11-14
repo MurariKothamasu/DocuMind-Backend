@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+
+
+//User Database Model , it will define What are the fields that are present in out Database 
+//This also Provide a Schema Level Validation
 const userSchema = new mongoose.Schema(
   {
     firstName: {
@@ -32,6 +36,8 @@ const userSchema = new mongoose.Schema(
   
 );
 
+
+// JWT Token Generation When User Signin Or Login to The Website
 userSchema.methods.getJwt = async function () {
   const user = this;
   const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
@@ -40,6 +46,8 @@ userSchema.methods.getJwt = async function () {
   return token;
 };
 
+// password Validator That will Compare the Password that are Stored in DataBase and Coming from Fontend
+// at the Time of Login
 userSchema.methods.validatePassword = async function (password) {
   const user = this;
   const passwordHash = user.password;

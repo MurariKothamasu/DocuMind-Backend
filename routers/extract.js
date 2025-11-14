@@ -6,8 +6,10 @@ const { processFile } = require("../utils/extractText");
 
 const extractRouter = express.Router();
 
-
-extractRouter.post("/extract" , upload.single("file"), async (req, res, next) => {
+//Extract Route -> This is the main Route For the Applicatiom
+//it will handle the incoming file and process the file and summarize the text and send it back to front end
+//when file is uploaded in frontend it will store in the multer memoryStorage 
+extractRouter.post("/extract" , userAuth ,upload.single("file"), async (req, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({ 

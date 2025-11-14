@@ -1,6 +1,6 @@
 const multer = require('multer');
 
-
+//Accepted File Types
 const fileFilter = (req, file, cb) => {
   const allowedTypes = [
     'application/pdf',
@@ -17,7 +17,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-
+//Multer MemoryStorage Configeration
 const upload = multer({
   storage: multer.memoryStorage(), 
   fileFilter: fileFilter,

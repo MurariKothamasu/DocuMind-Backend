@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 const {User} = require("../models/user");
 
+//Jwt Token Verification Coming From Frontend , This Make the Backend Routes Protected 
+//Only valid Jwt Token can allow you to access This routes
 const userAuth = async (req, res, next) => {
   try {
     const { token } = req.cookies;

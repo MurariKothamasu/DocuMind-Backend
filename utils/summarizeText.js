@@ -4,6 +4,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+
+// this will Summarize the extracted Text Using the Chatgpt Openai APi 
 async function summarizeText(text, lengthType) {
   try {
     let taskInstruction = "";
@@ -64,6 +66,7 @@ async function summarizeText(text, lengthType) {
       """${text.slice(0, 7000)}"""
     `;
 
+    //make api call with role and prompt and temperature
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: prompt }],

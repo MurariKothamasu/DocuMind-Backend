@@ -1,5 +1,7 @@
 const validator = require("validator");
 
+
+//Validate Signup data - proper  , password , email , firstname
 const validateSignupData = (req) => {
   const { firstName, lastName, email, password } = req.body;
   if (!firstName || !lastName) {
@@ -11,17 +13,6 @@ const validateSignupData = (req) => {
   }
 };
 
-const validateEditProfileData = (req)=>{
-  const ALLOWED_UPDATES = [
-      "firstName",
-      "lastName",
-    ];
-    const isEditAllowed = Object.keys(req.body).every((k) => {
-      return ALLOWED_UPDATES.includes(k);
-    });
-
-    return isEditAllowed
-}
 
 
 

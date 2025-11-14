@@ -8,7 +8,7 @@ const authRouter = require("./routers/auth");
 const extractRouter = require("./routers/extract");
 const app = express();
 
-
+//Frontend Deplyment Url 
 const FRONTEND_URL = "https://docu-mind-frontend-three.vercel.app" || "http://localhost:5173";
 app.use(cors({
   origin: FRONTEND_URL, 
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-
+//Global Error Handler For UnCought Errors
 app.use((err, req, res, next) => {
   console.error("Global Error Handler:", err.message);
 
@@ -53,6 +53,7 @@ app.use((err, req, res, next) => {
 
 // connectDB()
 
+//MongoDb Connection and Runing the Server on port
 connectDB().then(() => {
   console.log("Connected to database");
   app.listen(process.env.PORT || 3000, () => {

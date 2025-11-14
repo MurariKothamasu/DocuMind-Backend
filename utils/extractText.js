@@ -3,7 +3,7 @@ const { PDFParse } = require("pdf-parse");
 const Tesseract = require("tesseract.js");
 const summarizeText = require("../utils/summarizeText"); 
 
-
+//Extract Tesxt From Pdf 
 async function extractTextFromPdf(buffer) {
   const parser = new PDFParse({ data: buffer });
   const result = await parser.getText();
@@ -14,7 +14,7 @@ async function extractTextFromPdf(buffer) {
   return result.text;
 }
 
-
+//extract Text from Image using OCR (Tesseract)
 async function extractTextFromImage(buffer) {
 
   const result = await Tesseract.recognize(buffer, "eng");
@@ -33,7 +33,7 @@ async function processFile(file , length) {
     throw new Error("Invalid file type passed to service.");
   }
 
-
+  
   const { summary, keyPoints } = await summarizeText(extractedText, length);
 
   return {
