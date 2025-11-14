@@ -1,7 +1,7 @@
 
 const { PDFParse } = require("pdf-parse");
 const Tesseract = require("tesseract.js");
-const summarizeText = require("../utils/summarizeText"); // Adjust path if needed
+const summarizeText = require("../utils/summarizeText"); 
 
 
 async function extractTextFromPdf(buffer) {

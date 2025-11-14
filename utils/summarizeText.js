@@ -6,7 +6,6 @@ const openai = new OpenAI({
 
 async function summarizeText(text, lengthType) {
   try {
-    // --- 1. Define specific tasks and JSON formats ---
     let taskInstruction = "";
     let jsonFormat = "";
 
@@ -33,7 +32,7 @@ async function summarizeText(text, lengthType) {
         "keyPoints": ["Key point 1", "Key point 2", "Key point 3"]
       }`;
 
-    } else { // Default to 'medium'
+    } else { 
       taskInstruction = `
         Summarize the text in a concise paragraph (approx. 70-100 words).
         Then, list 3-5 key points that capture the most important ideas.
@@ -45,7 +44,7 @@ async function summarizeText(text, lengthType) {
       }`;
     }
 
-    // --- 2. Construct the full prompt with clear rules ---
+    
     const prompt = `
       You are an expert document summarizer. Your goal is to provide a precise and neutral summary.
       
@@ -68,20 +67,18 @@ async function summarizeText(text, lengthType) {
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: prompt }],
-      // Lowered temperature for more deterministic, precise output
+      
       temperature: 0.5, 
     });
 
     const content = response.choices[0].message.content.trim();
 
-    // Try parsing the JSON safely
     let parsed;
     try {
       parsed = JSON.parse(content);
     } catch {
-      // Fallback: extract summary manually if JSON fails
       parsed = {
-        summary: content.split("keyPoints")[0] || content, // Try to get summary
+        summary: content.split("keyPoints")[0] || content, 
         keyPoints: [],
       };
     }

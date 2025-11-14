@@ -21,7 +21,6 @@ authRouter.post("/signup", async (req, res) => {
     const existingUser = await User.findOne({ email: email });
 
     if (existingUser) {
-      // 2. If they do, send a clean 400 (Bad Request) error
       return res.status(400).json({
         success: false,
         message: "Email already exists. Please try to login."
